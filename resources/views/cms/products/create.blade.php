@@ -28,7 +28,7 @@
             <div class="row g-4">
                 <div class="col-md-6">
                     <label class="cms-label">Nama Produk <span style="color:#ef4444;">*</span></label>
-                    <input type="text" name="name" class="cms-input" value="{{ old('name') }}" placeholder="Contoh: Marching Snare Drum" required>
+                    <input type="text" name="title" class="cms-input" value="{{ old('title') }}" placeholder="Contoh: Marching Snare Drum" required>
                 </div>
                 <div class="col-md-3">
                     <label class="cms-label">Kategori</label>
@@ -39,12 +39,8 @@
                     <input type="number" name="order" class="cms-input" value="{{ old('order', 0) }}">
                 </div>
                 <div class="col-12">
-                    <label class="cms-label">Deskripsi Singkat</label>
-                    <textarea name="description" class="cms-input" rows="3" placeholder="Deskripsi produk...">{{ old('description') }}</textarea>
-                </div>
-                <div class="col-12">
                     <label class="cms-label">Spesifikasi / Fitur (per baris)</label>
-                    <textarea name="bullets" class="cms-input" rows="5" placeholder="Bahan rangka aluminium&#10;Ukuran 14 inch&#10;Finishing powder coat">{{ old('bullets') }}</textarea>
+                    <textarea name="features" class="cms-input" rows="5" placeholder="Bahan rangka aluminium&#10;Ukuran 14 inch&#10;Finishing powder coat">{{ old('features') }}</textarea>
                     <p class="cms-form-hint">Satu fitur/spesifikasi per baris. Akan ditampilkan sebagai poin-poin di website.</p>
                 </div>
                 <div class="col-12">

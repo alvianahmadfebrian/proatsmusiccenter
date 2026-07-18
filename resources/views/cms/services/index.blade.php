@@ -65,7 +65,7 @@
                                 <i class="{{ $s->icon }}" style="color:#10b981;"></i>
                             </div>
                         </td>
-                        <td><span style="font-weight:600;color:#1e293b;">{{ $s->name }}</span></td>
+                        <td><span style="font-weight:600;color:#1e293b;">{{ $s->title }}</span></td>
                         <td><span style="color:#64748b;font-size:0.875rem;">{{ Str::limit($s->description, 80) }}</span></td>
                         <td>
                             <div class="d-flex gap-1">

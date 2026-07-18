@@ -49,7 +49,7 @@
                             </div>
                         @endif
                         <div style="padding:12px 14px;">
-                            <p style="font-size:0.82rem;font-weight:600;color:#1e293b;margin:0 0 4px;">{{ $d->caption ?? 'Tanpa Keterangan' }}</p>
+                            <p style="font-size:0.82rem;font-weight:600;color:#1e293b;margin:0 0 4px;">{{ $d->title ?? 'Tanpa Keterangan' }}</p>
                             <p style="font-size:0.72rem;color:#94a3b8;margin:0 0 12px;">Urutan: {{ $d->order }}</p>
                             <div class="d-flex gap-1">
                                 <a href="/cms-admin/documentations/{{ $d->id }}/edit" class="btn-cms-outline" style="padding:5px 10px;font-size:0.72rem;flex:1;justify-content:center;text-align:center;">

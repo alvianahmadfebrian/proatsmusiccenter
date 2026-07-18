@@ -22,20 +22,20 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'icon' => 'required|string',
-            'title' => 'required|string',
-            'description' => 'required|string',
-            'order' => 'nullable|integer',
+            'title'       => 'required|string|max:255',
+            'icon'        => 'nullable|string|max:100',
+            'description' => 'nullable|string',
+            'order'       => 'nullable|integer',
         ]);
 
         Service::create([
-            'icon' => $request->icon,
-            'title' => $request->title,
+            'title'       => $request->title,
+            'icon'        => $request->icon ?? 'fas fa-tools',
             'description' => $request->description,
-            'order' => $request->order ?? 0,
+            'order'       => $request->order ?? 0,
         ]);
 
-        return redirect('/cms-admin/services')->with('success', 'Layanan berhasil ditambahkan');
+        return redirect('/cms-admin/services')->with('success', 'Layanan berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -49,27 +49,25 @@ class ServiceController extends Controller
         $service = Service::findOrFail($id);
 
         $request->validate([
-            'icon' => 'required|string',
-            'title' => 'required|string',
-            'description' => 'required|string',
-            'order' => 'nullable|integer',
+            'title'       => 'required|string|max:255',
+            'icon'        => 'nullable|string|max:100',
+            'description' => 'nullable|string',
+            'order'       => 'nullable|integer',
         ]);
 
         $service->update([
-            'icon' => $request->icon,
-            'title' => $request->title,
+            'title'       => $request->title,
+            'icon'        => $request->icon ?? 'fas fa-tools',
             'description' => $request->description,
-            'order' => $request->order ?? 0,
+            'order'       => $request->order ?? 0,
         ]);
 
-        return redirect('/cms-admin/services')->with('success', 'Layanan berhasil diupdate');
+        return redirect('/cms-admin/services')->with('success', 'Layanan berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
-        $service = Service::findOrFail($id);
-        $service->delete();
-
-        return redirect('/cms-admin/services')->with('success', 'Layanan berhasil dihapus');
+        Service::findOrFail($id)->delete();
+        return redirect('/cms-admin/services')->with('success', 'Layanan berhasil dihapus.');
     }
 }

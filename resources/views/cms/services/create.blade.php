@@ -28,7 +28,7 @@
             <div class="row g-4">
                 <div class="col-md-6">
                     <label class="cms-label">Nama Layanan <span style="color:#ef4444;">*</span></label>
-                    <input type="text" name="name" class="cms-input" value="{{ old('name') }}" placeholder="Contoh: Reparasi Alat Musik" required>
+                    <input type="text" name="title" class="cms-input" value="{{ old('title') }}" placeholder="Contoh: Reparasi Alat Musik" required>
                 </div>
                 <div class="col-md-3">
                     <label class="cms-label">Ikon (Font Awesome)</label>

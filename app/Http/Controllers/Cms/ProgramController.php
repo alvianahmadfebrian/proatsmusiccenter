@@ -22,24 +22,21 @@ class ProgramController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'num' => 'required|string',
-            'icon' => 'required|string',
-            'title' => 'required|string',
-            'description' => 'required|string',
-            'perks' => 'nullable|string',
-            'order' => 'nullable|integer',
+            'title'       => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'order'       => 'nullable|integer',
         ]);
 
         Program::create([
-            'num' => $request->num,
-            'icon' => $request->icon,
-            'title' => $request->title,
+            'num'         => $request->num ?? '',
+            'icon'        => $request->icon ?? 'fas fa-graduation-cap',
+            'title'       => $request->title,
             'description' => $request->description,
-            'perks' => $request->perks,
-            'order' => $request->order ?? 0,
+            'perks'       => $request->perks,
+            'order'       => $request->order ?? 0,
         ]);
 
-        return redirect('/cms-admin/programs')->with('success', 'Program berhasil ditambahkan');
+        return redirect('/cms-admin/programs')->with('success', 'Program berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -53,31 +50,26 @@ class ProgramController extends Controller
         $program = Program::findOrFail($id);
 
         $request->validate([
-            'num' => 'required|string',
-            'icon' => 'required|string',
-            'title' => 'required|string',
-            'description' => 'required|string',
-            'perks' => 'nullable|string',
-            'order' => 'nullable|integer',
+            'title'       => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'order'       => 'nullable|integer',
         ]);
 
         $program->update([
-            'num' => $request->num,
-            'icon' => $request->icon,
-            'title' => $request->title,
+            'num'         => $request->num ?? $program->num,
+            'icon'        => $request->icon ?? $program->icon,
+            'title'       => $request->title,
             'description' => $request->description,
-            'perks' => $request->perks,
-            'order' => $request->order ?? 0,
+            'perks'       => $request->perks,
+            'order'       => $request->order ?? 0,
         ]);
 
-        return redirect('/cms-admin/programs')->with('success', 'Program berhasil diupdate');
+        return redirect('/cms-admin/programs')->with('success', 'Program berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
-        $program = Program::findOrFail($id);
-        $program->delete();
-
-        return redirect('/cms-admin/programs')->with('success', 'Program berhasil dihapus');
+        Program::findOrFail($id)->delete();
+        return redirect('/cms-admin/programs')->with('success', 'Program berhasil dihapus.');
     }
 }

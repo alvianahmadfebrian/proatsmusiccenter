@@ -62,7 +62,7 @@
                                 </div>
                             @endif
                         </td>
-                        <td><span style="font-weight:600;color:#1e293b;">{{ $p->name }}</span></td>
+                        <td><span style="font-weight:600;color:#1e293b;">{{ $p->title }}</span></td>
                         <td>
                             @if($p->category)
                                 <span style="background:rgba(14,165,233,0.1);color:#0284c7;border-radius:6px;padding:3px 10px;font-size:0.75rem;font-weight:600;">{{ $p->category }}</span>

@@ -20,15 +20,15 @@
 
 <div class="cms-card">
     <div class="cms-card-header">
-        <h5><span class="card-icon" style="background:rgba(14,165,233,0.1);"><i class="fas fa-pen" style="color:#0ea5e9;"></i></span> Edit — {{ $product->name }}</h5>
+        <h5><span class="card-icon" style="background:rgba(14,165,233,0.1);"><i class="fas fa-pen" style="color:#0ea5e9;"></i></span> Edit — {{ $product->title }}</h5>
     </div>
     <div class="cms-card-body">
         <form action="/cms-admin/products/{{ $product->id }}" method="POST" enctype="multipart/form-data">
-            @csrf @method('PUT')
+            @csrf @method('POST')
             <div class="row g-4">
                 <div class="col-md-6">
                     <label class="cms-label">Nama Produk <span style="color:#ef4444;">*</span></label>
-                    <input type="text" name="name" class="cms-input" value="{{ old('name', $product->name) }}" required>
+                    <input type="text" name="title" class="cms-input" value="{{ old('title', $product->title) }}" required>
                 </div>
                 <div class="col-md-3">
                     <label class="cms-label">Kategori</label>
@@ -39,12 +39,8 @@
                     <input type="number" name="order" class="cms-input" value="{{ old('order', $product->order) }}">
                 </div>
                 <div class="col-12">
-                    <label class="cms-label">Deskripsi Singkat</label>
-                    <textarea name="description" class="cms-input" rows="3">{{ old('description', $product->description) }}</textarea>
-                </div>
-                <div class="col-12">
                     <label class="cms-label">Spesifikasi / Fitur (per baris)</label>
-                    <textarea name="bullets" class="cms-input" rows="5">{{ old('bullets', $product->bullets) }}</textarea>
+                    <textarea name="features" class="cms-input" rows="5">{{ old('features', $product->features) }}</textarea>
                     <p class="cms-form-hint">Satu fitur per baris. Akan tampil sebagai poin-poin di website.</p>
                 </div>
                 <div class="col-12">

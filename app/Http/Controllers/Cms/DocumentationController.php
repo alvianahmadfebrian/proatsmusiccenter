@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cms;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Documentation;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentationController extends Controller
 {
@@ -22,28 +23,21 @@ class DocumentationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            'title' => 'required|string',
-            'description' => 'nullable|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'title' => 'nullable|string|max:255',
             'order' => 'nullable|integer',
         ]);
 
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $name = time() . '.' . $file->extension();
-            $file->move(public_path('uploads'), $name);
-            $imagePath = 'uploads/' . $name;
-        }
+        $imagePath = $request->file('image')->store('documentations', 'public');
 
         Documentation::create([
             'image' => $imagePath,
-            'title' => $request->title,
+            'title' => $request->title ?? '',
             'description' => $request->description,
             'order' => $request->order ?? 0,
         ]);
 
-        return redirect('/cms-admin/documentations')->with('success', 'Dokumentasi berhasil ditambahkan');
+        return redirect('/cms-admin/documentations')->with('success', 'Foto dokumentasi berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -57,41 +51,32 @@ class DocumentationController extends Controller
         $documentation = Documentation::findOrFail($id);
 
         $request->validate([
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            'title' => 'required|string',
-            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'title' => 'nullable|string|max:255',
             'order' => 'nullable|integer',
         ]);
 
         $data = [
-            'title' => $request->title,
+            'title'       => $request->title ?? $documentation->title,
             'description' => $request->description,
-            'order' => $request->order ?? 0,
+            'order'       => $request->order ?? 0,
         ];
 
         if ($request->hasFile('image')) {
-            if ($documentation->image && file_exists(public_path($documentation->image))) {
-                @unlink(public_path($documentation->image));
-            }
-            $file = $request->file('image');
-            $name = time() . '.' . $file->extension();
-            $file->move(public_path('uploads'), $name);
-            $data['image'] = 'uploads/' . $name;
+            if ($documentation->image) Storage::disk('public')->delete($documentation->image);
+            $data['image'] = $request->file('image')->store('documentations', 'public');
         }
 
         $documentation->update($data);
 
-        return redirect('/cms-admin/documentations')->with('success', 'Dokumentasi berhasil diupdate');
+        return redirect('/cms-admin/documentations')->with('success', 'Foto dokumentasi berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
-        $documentation = Documentation::findOrFail($id);
-        if ($documentation->image && file_exists(public_path($documentation->image))) {
-            @unlink(public_path($documentation->image));
-        }
-        $documentation->delete();
-
-        return redirect('/cms-admin/documentations')->with('success', 'Dokumentasi berhasil dihapus');
+        $doc = Documentation::findOrFail($id);
+        if ($doc->image) Storage::disk('public')->delete($doc->image);
+        $doc->delete();
+        return redirect('/cms-admin/documentations')->with('success', 'Foto dokumentasi berhasil dihapus.');
     }
 }

@@ -27,8 +27,8 @@
             @csrf @method('PUT')
             <div class="row g-4">
                 <div class="col-md-8">
-                    <label class="cms-label">Keterangan / Caption</label>
-                    <input type="text" name="caption" class="cms-input" value="{{ old('caption', $documentation->caption) }}" placeholder="Keterangan foto...">
+                    <label class="cms-label">Keterangan / Judul Foto</label>
+                    <input type="text" name="title" class="cms-input" value="{{ old('title', $documentation->title) }}" placeholder="Keterangan foto...">
                 </div>
                 <div class="col-md-4">
                     <label class="cms-label">Urutan Tampil</label>
