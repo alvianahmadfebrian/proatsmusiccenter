@@ -182,23 +182,77 @@
         <div class="hero-media reveal reveal-right">
           <div class="hero-slider-container">
             <div class="hero-slider" id="heroSlider">
-              @foreach($heroSliders as $index => $hs)
-                @php
-                  $imgSrc = \Illuminate\Support\Str::startsWith($hs->image, 'assets/') ? asset($hs->image) : (\Illuminate\Support\Str::startsWith($hs->image, 'storage/') ? asset($hs->image) : asset('storage/' . $hs->image));
-                @endphp
-                <div class="slide {{ $index == 0 ? 'active' : '' }}">
-                  <img src="{{ $imgSrc }}" alt="{{ $hs->title }}" class="hero-img">
-                  <div class="hero-badge glass">
-                    <div class="badge-icon">
-                      <i class="{{ $hs->icon ?? 'fas fa-award' }}"></i>
+              @if(isset($heroSliders) && $heroSliders->count() > 0)
+                @foreach($heroSliders as $index => $hs)
+                  @php
+                    $imgSrc = \Illuminate\Support\Str::startsWith($hs->image, 'assets/') ? asset($hs->image) : (\Illuminate\Support\Str::startsWith($hs->image, 'storage/') ? asset($hs->image) : asset('storage/' . $hs->image));
+                  @endphp
+                  <div class="slide {{ $index == 0 ? 'active' : '' }}">
+                    <img src="{{ $imgSrc }}" alt="{{ $hs->title }}" class="hero-img">
+                    <div class="hero-badge glass">
+                      <div class="badge-icon">
+                        <i class="{{ $hs->icon ?? 'fas fa-award' }}"></i>
+                      </div>
+                      <div class="badge-text">
+                        <h4>{{ $hs->title }}</h4>
+                        <p>{{ $hs->subtitle }}</p>
+                      </div>
                     </div>
+                  </div>
+                @endforeach
+              @else
+                <!-- Fallback Default Slides -->
+                <div class="slide active">
+                  <img src="{{ asset('assets/images/hero_drum.png') }}" alt="Marching Snare Drum Proats" class="hero-img">
+                  <div class="hero-badge glass">
+                    <div class="badge-icon"><i class="fas fa-award"></i></div>
                     <div class="badge-text">
-                      <h4>{{ $hs->title }}</h4>
-                      <p>{{ $hs->subtitle }}</p>
+                      <h4>Kualitas Ekspor</h4>
+                      <p>Marching Band & HTS</p>
                     </div>
                   </div>
                 </div>
-              @endforeach
+                <div class="slide">
+                  <img src="{{ asset('assets/images/marching_drum.png') }}" alt="Marching Percussion" class="hero-img">
+                  <div class="hero-badge glass">
+                    <div class="badge-icon"><i class="fas fa-drum"></i></div>
+                    <div class="badge-text">
+                      <h4>Marching Percussion</h4>
+                      <p>Konstruksi Presisi Tinggi</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="slide">
+                  <img src="{{ asset('assets/images/brass_instrument.png') }}" alt="Alat Tiup & Brass" class="hero-img">
+                  <div class="hero-badge glass">
+                    <div class="badge-icon"><i class="fas fa-wind"></i></div>
+                    <div class="badge-text">
+                      <h4>Alat Tiup & Brass</h4>
+                      <p>Suara Nyaring & Jernih</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="slide">
+                  <img src="{{ asset('assets/images/studio_band.png') }}" alt="Studio Recording" class="hero-img">
+                  <div class="hero-badge glass">
+                    <div class="badge-icon"><i class="fas fa-guitar"></i></div>
+                    <div class="badge-text">
+                      <h4>Studio & Recording</h4>
+                      <p>Peralatan Profesional</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="slide">
+                  <img src="{{ asset('assets/images/traditional_instrument.png') }}" alt="Alat Musik Tradisional" class="hero-img">
+                  <div class="hero-badge glass">
+                    <div class="badge-icon"><i class="fas fa-compact-disc"></i></div>
+                    <div class="badge-text">
+                      <h4>Alat Musik Tradisional</h4>
+                      <p>Kerajinan Asli Indonesia</p>
+                    </div>
+                  </div>
+                </div>
+              @endif
             </div>
           </div>
         </div>
