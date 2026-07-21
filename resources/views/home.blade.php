@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CV. Proats Indonesia - Produsen & Distributor Alat Musik Sejak 1970</title>
 
+  <!-- Favicon / Tab Bar Icon -->
+  <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
+
   <!-- SEO Meta Tags -->
   <meta name="description" content="CV. Proats Indonesia (Proats Music Center) - Produsen & Distributor Alat Musik berkualitas tinggi sejak 1970. Melayani Marching Band, Studio Band, Tiup, Tradisional, dan SIPLah.">
   <meta name="keywords" content="proats music center, cv proats indonesia, produsen alat musik, distributor alat musik, marching band bogor, alat musik tradisional, marching band indonesia, siplah alat musik">
