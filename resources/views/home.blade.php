@@ -65,18 +65,18 @@
       </button>
 
       <nav class="nav" id="navMenu">
-        <a href="{{ url('/#home') }}" class="nav-link active">Home</a>
+        <a href="#home" class="nav-link active">Home</a>
 
         <!-- Dropdown Profil -->
         <div class="nav-item dropdown">
-          <a href="{{ url('/#about') }}" class="nav-link dropdown-toggle">
+          <a href="#about" class="nav-link dropdown-toggle">
             Profil <i class="fas fa-chevron-down dropdown-arrow"></i>
           </a>
           <div class="dropdown-menu glass">
-            <a href="{{ url('/#about') }}" class="dropdown-item">
+            <a href="#about" class="dropdown-item">
               <i class="fas fa-building"></i> Profil Perusahaan
             </a>
-            <a href="{{ url('/#about') }}" class="dropdown-item">
+            <a href="#about" class="dropdown-item">
               <i class="fas fa-history"></i> Sejarah Sejak 1970
             </a>
           </div>
@@ -84,7 +84,7 @@
 
         <!-- Dropdown Produk & Katalog -->
         <div class="nav-item dropdown">
-          <a href="{{ url('/#products') }}" class="nav-link dropdown-toggle">
+          <a href="#products" class="nav-link dropdown-toggle">
             Produk & Katalog <i class="fas fa-chevron-down dropdown-arrow"></i>
           </a>
           <div class="dropdown-menu glass">
@@ -92,19 +92,19 @@
               <i class="fas fa-external-link-alt"></i> <strong>E-Catalog Online</strong>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="{{ url('/#products') }}" class="dropdown-item">
+            <a href="#products" class="dropdown-item">
               <i class="fas fa-layer-group"></i> Semua Produk
             </a>
-            <a href="{{ url('/#products') }}" class="dropdown-item">
+            <a href="#products" class="dropdown-item">
               <i class="fas fa-drum"></i> Marching Band
             </a>
-            <a href="{{ url('/#products') }}" class="dropdown-item">
+            <a href="#products" class="dropdown-item">
               <i class="fas fa-wind"></i> Alat Tiup / Brass
             </a>
-            <a href="{{ url('/#products') }}" class="dropdown-item">
+            <a href="#products" class="dropdown-item">
               <i class="fas fa-guitar"></i> Studio Band
             </a>
-            <a href="{{ url('/#products') }}" class="dropdown-item">
+            <a href="#products" class="dropdown-item">
               <i class="fas fa-compact-disc"></i> Tradisional
             </a>
           </div>
@@ -112,14 +112,14 @@
 
         <!-- Dropdown Layanan & Program -->
         <div class="nav-item dropdown">
-          <a href="{{ url('/#services') }}" class="nav-link dropdown-toggle">
+          <a href="#services" class="nav-link dropdown-toggle">
             Layanan & Program <i class="fas fa-chevron-down dropdown-arrow"></i>
           </a>
           <div class="dropdown-menu glass">
-            <a href="{{ url('/#services') }}" class="dropdown-item">
+            <a href="#services" class="dropdown-item">
               <i class="fas fa-concierge-bell"></i> Layanan Kami
             </a>
-            <a href="{{ url('/#programs') }}" class="dropdown-item">
+            <a href="#programs" class="dropdown-item">
               <i class="fas fa-graduation-cap"></i> Program & Edukasi
             </a>
             <a href="https://siplah.kemendikdasmen.go.id/" target="_blank" rel="noopener noreferrer" class="dropdown-item">
@@ -129,7 +129,7 @@
         </div>
 
         <a href="#dokumentasi" class="nav-link">Dokumentasi</a>
-        <a href="{{ url('/#contact') }}" class="nav-link">Hubungi Kami</a>
+        <a href="#contact" class="nav-link">Hubungi Kami</a>
 
         <div class="nav-cta">
           <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
@@ -617,12 +617,12 @@
         <div>
           <h4 class="footer-title">Tautan Cepat</h4>
           <ul class="footer-links" style="margin-top: 1.5rem;">
-            <li><a href="{{ url('/#home') }}">Home</a></li>
-            <li><a href="{{ url('/#about') }}">Profil</a></li>
-            <li><a href="{{ url('/#services') }}">Layanan</a></li>
-            <li><a href="{{ url('/#products') }}">Produk</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Profil</a></li>
+            <li><a href="#services">Layanan</a></li>
+            <li><a href="#products">Produk</a></li>
             <li><a href="https://catalog.proatsmusiccenter.com/" target="_blank" rel="noopener noreferrer">E-Catalog Online <i class="fas fa-external-link-alt" style="font-size: 0.75em;"></i></a></li>
-            <li><a href="{{ url('/#programs') }}">Program</a></li>
+            <li><a href="#programs">Program</a></li>
             <li><a href="#dokumentasi">Dokumentasi</a></li>
           </ul>
         </div>
@@ -630,11 +630,11 @@
         <div>
           <h4 class="footer-title">Produk & Program</h4>
           <ul class="footer-links" style="margin-top: 1.5rem;">
-            <li><a href="{{ url('/#products') }}">Marching Band</a></li>
-            <li><a href="{{ url('/#products') }}">Wind / Brass</a></li>
-            <li><a href="{{ url('/#products') }}">Alat Tradisional</a></li>
-            <li><a href="{{ url('/#programs') }}">Recording & Studio</a></li>
-            <li><a href="{{ url('/#programs') }}">Sound System</a></li>
+            <li><a href="#products">Marching Band</a></li>
+            <li><a href="#products">Wind / Brass</a></li>
+            <li><a href="#products">Alat Tradisional</a></li>
+            <li><a href="#programs">Recording & Studio</a></li>
+            <li><a href="#programs">Sound System</a></li>
           </ul>
         </div>
 

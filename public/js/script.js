@@ -45,6 +45,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Clean URL if loaded with hash tag (e.g. #home)
+  if (window.location.hash) {
+    history.replaceState(null, null, window.location.pathname);
+  }
+
+  // Smooth scroll and clean URL handler for hash links
+  document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const rawHref = this.getAttribute('href');
+      if (!rawHref) return;
+
+      const hashIndex = rawHref.indexOf('#');
+      if (hashIndex === -1) return;
+
+      const targetId = rawHref.substring(hashIndex + 1);
+      if (!targetId) return;
+
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        e.preventDefault();
+        const headerOffset = 80;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+
+        // Clean URL to keep address bar clean without #
+        if (window.history.pushState) {
+          window.history.pushState(null, null, window.location.pathname);
+        }
+      }
+    });
+  });
+
   // 3. Active Link Highlighter on scroll
   const sections = document.querySelectorAll('section');
   window.addEventListener('scroll', () => {
