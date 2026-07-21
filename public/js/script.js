@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const waText = `Halo Admin Proats Music Center,%0A%0ASaya ingin berkonsultasi mengenai produk/layanan Anda.%0A%0A*Detail Informasi:*%0A- Nama: ${name}%0A- WhatsApp: ${phone}%0A- Instansi/Sekolah: ${school}%0A- Kategori Kebutuhan: ${category}%0A%0A*Pesan:*%0A${message}`;
 
     // Business phone number
-    const waNumber = window.whatsappNumber || '6285216160770';
+    const waNumber = window.whatsappNumber || '6281290174510';
     const waURL = `https://wa.me/${waNumber}?text=${waText}`;
 
     // Open WhatsApp in new tab
@@ -172,6 +172,77 @@ document.addEventListener('DOMContentLoaded', () => {
 
     localStorage.setItem('theme', theme);
   });
+
+  // 8. Auto Photo Slider
+  const slides = document.querySelectorAll('.hero-slider .slide');
+  const dots = document.querySelectorAll('.slider-dots .dot');
+  const prevBtn = document.getElementById('sliderPrev');
+  const nextBtn = document.getElementById('sliderNext');
+
+  if (slides.length > 0) {
+    let currentSlide = 0;
+    let slideInterval;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      currentSlide = index;
+    }
+
+    function nextSlide() {
+      const nextIndex = (currentSlide + 1) % slides.length;
+      showSlide(nextIndex);
+    }
+
+    function prevSlide() {
+      const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(prevIndex);
+    }
+
+    function startAutoSlide() {
+      stopAutoSlide();
+      slideInterval = setInterval(nextSlide, 3500);
+    }
+
+    function stopAutoSlide() {
+      if (slideInterval) {
+        clearInterval(slideInterval);
+      }
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        startAutoSlide();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        startAutoSlide();
+      });
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        showSlide(i);
+        startAutoSlide();
+      });
+    });
+
+    const sliderContainer = document.querySelector('.hero-slider-container');
+    if (sliderContainer) {
+      sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+      sliderContainer.addEventListener('mouseleave', startAutoSlide);
+    }
+
+    startAutoSlide();
+  }
 
 });
 

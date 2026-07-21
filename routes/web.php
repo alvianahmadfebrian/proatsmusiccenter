@@ -9,6 +9,7 @@ use App\Http\Controllers\Cms\ServiceController;
 use App\Http\Controllers\Cms\ProductController;
 use App\Http\Controllers\Cms\ProgramController;
 use App\Http\Controllers\Cms\DocumentationController;
+use App\Http\Controllers\Cms\HeroSliderController;
 use App\Http\Controllers\Cms\ContactController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,16 @@ Route::prefix('cms-admin')->group(function () {
 
         // ── Hero (single resource, no index/create/delete) ──
         Route::get('/hero',  [HeroController::class, 'edit']);
+        Route::post('/hero', [HeroController::class, 'update']);
+
+        // ── Hero Sliders ──
+        Route::get('/hero-sliders',              [HeroSliderController::class, 'index']);
+        Route::get('/hero-sliders/create',       [HeroSliderController::class, 'create']);
+        Route::post('/hero-sliders',             [HeroSliderController::class, 'store']);
+        Route::get('/hero-sliders/{id}/edit',    [HeroSliderController::class, 'edit']);
+        Route::match(['POST', 'PUT'], '/hero-sliders/{id}', [HeroSliderController::class, 'update']);
+        Route::match(['POST', 'DELETE'], '/hero-sliders/{id}/delete', [HeroSliderController::class, 'destroy']);
+        Route::delete('/hero-sliders/{id}',      [HeroSliderController::class, 'destroy']);
         Route::match(['POST', 'PUT'], '/hero', [HeroController::class, 'update']);
 
         // ── Profile (single resource) ──

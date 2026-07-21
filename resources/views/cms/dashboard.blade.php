@@ -69,13 +69,14 @@
                 <div class="row g-2">
                     @php
                     $menus = [
-                        ['icon'=>'fas fa-laptop-code', 'title'=>'Hero Section',       'desc'=>'Tagline, slogan & gambar utama', 'link'=>'/cms-admin/hero',           'color'=>'#6366f1'],
-                        ['icon'=>'fas fa-building',     'title'=>'Profil Perusahaan',  'desc'=>'Deskripsi, NIB & sertifikasi',  'link'=>'/cms-admin/profile',         'color'=>'#8b5cf6'],
-                        ['icon'=>'fas fa-history',      'title'=>'Timeline Sejarah',   'desc'=>'Perjalanan dari 1970 hingga kini','link'=>'/cms-admin/timeline',       'color'=>'#f59e0b'],
-                        ['icon'=>'fas fa-concierge-bell','title'=>'Layanan Kami',      'desc'=>'Reparasi, tukar tambah & more',  'link'=>'/cms-admin/services',        'color'=>'#10b981'],
-                        ['icon'=>'fas fa-drum',         'title'=>'Katalog Produk',     'desc'=>'Instrumen marching, brass, studio','link'=>'/cms-admin/products',      'color'=>'#0ea5e9'],
-                        ['icon'=>'fas fa-graduation-cap','title'=>'Program & Edukasi', 'desc'=>'Pelatihan & music organizer',   'link'=>'/cms-admin/programs',        'color'=>'#ec4899'],
-                        ['icon'=>'fas fa-images',       'title'=>'Galeri Dokumentasi', 'desc'=>'Foto kegiatan & event',         'link'=>'/cms-admin/documentations',  'color'=>'#14b8a6'],
+                        ['icon'=>'fas fa-laptop-code', 'title'=>'Teks & Tombol Hero', 'desc'=>'Tagline, slogan & tombol hero', 'link'=>'/cms-admin/hero',           'color'=>'#38bdf8'],
+                        ['icon'=>'fas fa-sliders-h',   'title'=>'Slider Foto Utama',  'desc'=>'Kelola foto auto-slider header', 'link'=>'/cms-admin/hero-sliders',   'color'=>'#eab308'],
+                        ['icon'=>'fas fa-building',    'title'=>'Profil Perusahaan',  'desc'=>'Deskripsi, NIB & sertifikasi',  'link'=>'/cms-admin/profile',         'color'=>'#a855f7'],
+                        ['icon'=>'fas fa-history',     'title'=>'Timeline Sejarah',   'desc'=>'Perjalanan dari 1970 hingga kini','link'=>'/cms-admin/timeline',       'color'=>'#ec4899'],
+                        ['icon'=>'fas fa-drum',        'title'=>'Katalog Produk',     'desc'=>'Instrumen marching, brass, studio','link'=>'/cms-admin/products',      'color'=>'#0ea5e9'],
+                        ['icon'=>'fas fa-concierge-bell','title'=>'Layanan Kami',     'desc'=>'Reparasi, tukar tambah & more',  'link'=>'/cms-admin/services',        'color'=>'#10b981'],
+                        ['icon'=>'fas fa-graduation-cap','title'=>'Program & Edukasi', 'desc'=>'Pelatihan & music organizer',   'link'=>'/cms-admin/programs',        'color'=>'#f59e0b'],
+                        ['icon'=>'fas fa-camera-retro', 'title'=>'Galeri Dokumentasi', 'desc'=>'Foto kegiatan & event',         'link'=>'/cms-admin/documentations',  'color'=>'#14b8a6'],
                         ['icon'=>'fas fa-address-book', 'title'=>'Hubungi Kami',       'desc'=>'WhatsApp, email & maps',        'link'=>'/cms-admin/contacts',        'color'=>'#f97316'],
                     ];
                     @endphp

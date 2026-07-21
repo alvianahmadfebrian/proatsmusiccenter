@@ -12,15 +12,15 @@
         :root {
             --sidebar-w: 270px;
             --sidebar-collapsed-w: 72px;
-            --primary:    #6366f1;
-            --primary-hv: #4f46e5;
-            --primary-glow: rgba(99,102,241,0.2);
-            --bg-page:   #f1f5f9;
-            --bg-sidebar: #0f172a;
-            --bg-sidebar-2: #1e293b;
-            --sidebar-border: rgba(255,255,255,0.06);
-            --text-sidebar: rgba(255,255,255,0.55);
-            --text-sidebar-active: #fff;
+            --primary: #d4af37;
+            --primary-hv: #b89628;
+            --primary-glow: rgba(212,175,55,0.25);
+            --bg-page: #f8fafc;
+            --bg-sidebar: #ffffff;
+            --bg-sidebar-2: #f8fafc;
+            --sidebar-border: #e9eef5;
+            --text-sidebar: #475569;
+            --text-sidebar-active: #0f172a;
             --card-shadow: 0 4px 24px rgba(0,0,0,0.06);
             --radius: 14px;
             --header-h: 68px;
@@ -37,20 +37,21 @@
         }
 
         /* ═══════════════════════════
-           SIDEBAR
+           SIDEBAR (CLEAN WHITE THEME)
         ═══════════════════════════ */
         #sidebar {
             position: fixed;
             top: 0; left: 0;
             width: var(--sidebar-w);
             height: 100vh;
-            background: var(--bg-sidebar);
+            background: #ffffff;
+            border-right: 1px solid #e9eef5;
+            box-shadow: 2px 0 20px rgba(0,0,0,0.03);
             display: flex;
             flex-direction: column;
             z-index: 1000;
             transition: width var(--sidebar-transition), transform 0.3s ease;
             overflow: hidden;
-            /* Crucial: allow children to shrink below their content size */
             min-height: 0;
         }
 
@@ -71,11 +72,6 @@
             pointer-events: none;
         }
 
-        #sidebar.collapsed .sidebar-brand {
-            justify-content: center;
-            padding: 26px 14px 22px;
-        }
-
         #sidebar.collapsed .nav-item a,
         #sidebar.collapsed .sidebar-footer a {
             justify-content: center;
@@ -88,10 +84,6 @@
 
         #sidebar.collapsed .nav-icon {
             margin: 0 auto;
-        }
-
-        #sidebar.collapsed .sidebar-toggle-btn {
-            transform: rotate(180deg);
         }
 
         /* Tooltip on collapsed items */
@@ -109,15 +101,15 @@
             left: calc(var(--sidebar-collapsed-w) - 4px);
             top: 50%;
             transform: translateY(-50%);
-            background: #1e293b;
-            color: #f1f5f9;
+            background: #0f172a;
+            color: #ffffff;
             font-size: 0.78rem;
             font-weight: 600;
             padding: 6px 12px;
             border-radius: 8px;
             white-space: nowrap;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            border: 1px solid #334155;
             pointer-events: none;
             z-index: 9999;
         }
@@ -129,7 +121,7 @@
             top: 50%;
             transform: translateY(-50%);
             border: 5px solid transparent;
-            border-right-color: #1e293b;
+            border-right-color: #0f172a;
             z-index: 9999;
             pointer-events: none;
         }
@@ -139,47 +131,63 @@
             display: none;
         }
 
-        /* subtle gradient overlay */
+        /* subtle light overlay */
         #sidebar::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(160deg, rgba(99,102,241,0.08) 0%, transparent 60%);
+            background: linear-gradient(160deg, rgba(212,175,55,0.04) 0%, transparent 60%);
             pointer-events: none;
         }
 
-        /* ── Sidebar Brand ── */
-        /* ── Sidebar Toggle Button ── */
+        /* ── Sidebar Brand & Toggle Button ── */
         .sidebar-toggle-btn {
             position: absolute;
             top: 50%;
-            right: -14px;
+            right: 16px;
             transform: translateY(-50%);
-            width: 28px; height: 28px;
-            border-radius: 50%;
-            background: #1e293b;
-            border: 2px solid rgba(255,255,255,0.1);
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
             display: flex; align-items: center; justify-content: center;
-            color: rgba(255,255,255,0.5);
+            color: #475569;
             cursor: pointer;
             z-index: 1001;
             transition: all var(--sidebar-transition);
-            font-size: 0.65rem;
+            font-size: 0.75rem;
         }
 
         .sidebar-toggle-btn:hover {
             background: var(--primary);
             border-color: var(--primary);
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(99,102,241,0.4);
+            color: #000000;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.35);
+        }
+
+        #sidebar.collapsed .sidebar-brand {
+            justify-content: center;
+            padding: 22px 10px;
+        }
+
+        #sidebar.collapsed .sidebar-toggle-btn {
+            position: relative;
+            top: auto; right: auto;
+            transform: rotate(180deg);
+            margin: 0 auto;
+            width: 34px; height: 34px;
+        }
+
+        #sidebar.collapsed .sidebar-brand-icon {
+            display: none;
         }
 
         .sidebar-brand {
             display: flex;
             align-items: center;
             gap: 14px;
-            padding: 26px 24px 22px;
-            border-bottom: 1px solid var(--sidebar-border);
+            padding: 24px 24px 20px;
+            border-bottom: 1px solid #f1f5f9;
             position: relative;
             transition: padding var(--sidebar-transition);
         }
@@ -187,13 +195,13 @@
         .sidebar-brand-icon {
             width: 42px; height: 42px;
             border-radius: 12px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: linear-gradient(135deg, #d4af37, #b89628);
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 8px 20px rgba(99,102,241,0.4);
+            box-shadow: 0 8px 20px rgba(212,175,55,0.35);
             flex-shrink: 0;
         }
 
-        .sidebar-brand-icon i { color: #fff; font-size: 1.1rem; }
+        .sidebar-brand-icon i { color: #000; font-size: 1.1rem; }
 
         .sidebar-brand-text {
             transition: opacity var(--sidebar-transition), width var(--sidebar-transition);
@@ -202,7 +210,7 @@
         }
 
         .sidebar-brand-text h5 {
-            color: #fff;
+            color: #0f172a;
             font-size: 1rem;
             font-weight: 800;
             letter-spacing: 0.3px;
@@ -210,19 +218,19 @@
         }
 
         .sidebar-brand-text small {
-            color: rgba(255,255,255,0.35);
+            color: #94a3b8;
             font-size: 0.7rem;
             letter-spacing: 0.4px;
         }
 
         /* ── Nav Section Labels ── */
         .nav-label {
-            padding: 12px 24px 4px;
+            padding: 14px 24px 6px;
             font-size: 0.65rem;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 1.2px;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.2);
+            color: #94a3b8;
             white-space: nowrap;
             overflow: hidden;
             flex-shrink: 0;
@@ -232,19 +240,19 @@
         /* ── Nav Items ── */
         .sidebar-nav {
             flex: 1 1 0;
-            min-height: 0;   /* KEY: allows flex child to scroll inside flex container */
+            min-height: 0;
             overflow-y: auto;
             overflow-x: hidden;
             padding: 6px 14px 10px;
             scrollbar-width: thin;
-            scrollbar-color: rgba(255,255,255,0.08) transparent;
+            scrollbar-color: #cbd5e1 transparent;
         }
 
         .sidebar-nav::-webkit-scrollbar { width: 3px; }
         .sidebar-nav::-webkit-scrollbar-track { background: transparent; }
-        .sidebar-nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
+        .sidebar-nav::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
 
-        .nav-item { list-style: none; margin-bottom: 2px; }
+        .nav-item { list-style: none; margin-bottom: 3px; }
 
         .nav-item a {
             display: flex;
@@ -252,10 +260,10 @@
             gap: 12px;
             padding: 11px 14px;
             border-radius: 10px;
-            color: var(--text-sidebar);
+            color: #475569;
             text-decoration: none;
             font-size: 0.875rem;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.2s ease, padding var(--sidebar-transition), justify-content var(--sidebar-transition);
             position: relative;
             white-space: nowrap;
@@ -278,31 +286,33 @@
             border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
             font-size: 0.82rem;
-            background: rgba(255,255,255,0.04);
+            background: #f1f5f9;
+            color: #64748b;
             transition: all 0.2s;
             flex-shrink: 0;
         }
 
         .nav-item a:hover {
-            color: #fff;
-            background: rgba(255,255,255,0.06);
+            color: #0f172a;
+            background: rgba(212, 175, 55, 0.08);
         }
 
         .nav-item a:hover .nav-icon {
-            background: rgba(99,102,241,0.2);
-            color: #818cf8;
+            background: rgba(212,175,55,0.2);
+            color: #b89628;
         }
 
         .nav-item.active > a {
-            color: #fff;
-            background: linear-gradient(90deg, rgba(99,102,241,0.3), rgba(99,102,241,0.08));
-            border: 1px solid rgba(99,102,241,0.25);
+            color: #0f172a;
+            background: linear-gradient(90deg, rgba(212,175,55,0.18), rgba(212,175,55,0.04));
+            border: 1px solid rgba(212,175,55,0.3);
+            font-weight: 700;
         }
 
         .nav-item.active > a .nav-icon {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(99,102,241,0.4);
+            background: linear-gradient(135deg, #d4af37, #b89628);
+            color: #000000;
+            box-shadow: 0 4px 12px rgba(212,175,55,0.35);
         }
 
         /* Active left indicator */
@@ -312,13 +322,13 @@
             left: 0; top: 8px; bottom: 8px;
             width: 3px;
             border-radius: 0 3px 3px 0;
-            background: linear-gradient(to bottom, #6366f1, #8b5cf6);
+            background: linear-gradient(to bottom, #d4af37, #b89628);
         }
 
         /* ── Sidebar Footer ── */
         .sidebar-footer {
             padding: 16px 14px;
-            border-top: 1px solid var(--sidebar-border);
+            border-top: 1px solid #f1f5f9;
         }
 
         .sidebar-footer a {
@@ -327,16 +337,16 @@
             gap: 12px;
             padding: 10px 14px;
             border-radius: 10px;
-            color: rgba(255,255,255,0.35);
+            color: #64748b;
             text-decoration: none;
             font-size: 0.85rem;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.2s;
         }
 
         .sidebar-footer a:hover {
-            color: #fca5a5;
-            background: rgba(239,68,68,0.08);
+            color: #dc2626;
+            background: rgba(239, 68, 68, 0.06);
         }
 
         .sidebar-footer a .nav-icon {
@@ -344,13 +354,14 @@
             border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
             font-size: 0.82rem;
-            background: rgba(255,255,255,0.04);
+            background: #f1f5f9;
+            color: #64748b;
             transition: all 0.2s;
         }
 
         .sidebar-footer a:hover .nav-icon {
-            background: rgba(239,68,68,0.12);
-            color: #fca5a5;
+            background: rgba(239, 68, 68, 0.12);
+            color: #dc2626;
         }
 
         /* ═══════════════════════════
@@ -609,24 +620,24 @@
         /* Buttons */
         .btn-cms-primary {
             display: inline-flex; align-items: center; gap: 7px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: linear-gradient(135deg, #d4af37, #b89628);
             border: none;
             border-radius: 10px;
-            color: #fff;
+            color: #000000;
             font-size: 0.875rem;
-            font-weight: 600;
+            font-weight: 700;
             padding: 10px 20px;
             cursor: pointer;
             font-family: inherit;
             text-decoration: none;
             transition: all 0.25s;
-            box-shadow: 0 4px 14px rgba(99,102,241,0.3);
+            box-shadow: 0 4px 14px rgba(212,175,55,0.3);
         }
 
         .btn-cms-primary:hover {
             transform: translateY(-1px);
-            box-shadow: 0 8px 20px rgba(99,102,241,0.4);
-            color: #fff;
+            box-shadow: 0 8px 20px rgba(212,175,55,0.45);
+            color: #000000;
         }
 
         .btn-cms-secondary {
@@ -829,8 +840,8 @@
 <aside id="sidebar">
     <!-- Brand -->
     <div class="sidebar-brand">
-        <div class="sidebar-brand-icon">
-            <i class="fas fa-music"></i>
+        <div class="sidebar-brand-icon" style="background: transparent; box-shadow: none; width: auto; height: 46px;">
+            <img src="{{ asset('assets/images/logo.png') }}" alt="Proats Logo" style="height: 46px; object-fit: contain;">
         </div>
         <div class="sidebar-brand-text">
             <h5>PROATS CMS</h5>
@@ -844,72 +855,78 @@
 
     <!-- Nav -->
     <nav class="sidebar-nav">
-        <div class="nav-label">Overview</div>
+        <div class="nav-label">Menu Utama</div>
         <ul class="list-unstyled mb-0">
             <li class="nav-item {{ Request::is('cms-admin/dashboard') ? 'active' : '' }}">
-                <a href="/cms-admin/dashboard" data-tooltip="Dashboard">
-                    <span class="nav-icon"><i class="fas fa-chart-pie"></i></span>
+                <a href="/cms-admin/dashboard" data-tooltip="Dashboard Overview">
+                    <span class="nav-icon"><i class="fas fa-th-large" style="color:#6366f1;"></i></span>
                     <span class="nav-link-text">Dashboard</span>
                 </a>
             </li>
         </ul>
 
-        <div class="nav-label" style="margin-top:10px;">Konten Utama</div>
+        <div class="nav-label" style="margin-top:14px;">Konten Halaman Depan</div>
         <ul class="list-unstyled mb-0">
             <li class="nav-item {{ Request::is('cms-admin/hero') ? 'active' : '' }}">
-                <a href="/cms-admin/hero" data-tooltip="Hero Section">
-                    <span class="nav-icon"><i class="fas fa-laptop-code"></i></span>
-                    <span class="nav-link-text">Hero Section</span>
+                <a href="/cms-admin/hero" data-tooltip="Teks & Tombol Hero">
+                    <span class="nav-icon"><i class="fas fa-laptop-code" style="color:#38bdf8;"></i></span>
+                    <span class="nav-link-text">Teks & Tombol Hero</span>
+                </a>
+            </li>
+            <li class="nav-item {{ Request::is('cms-admin/hero-sliders*') ? 'active' : '' }}">
+                <a href="/cms-admin/hero-sliders" data-tooltip="Slider Foto Utama">
+                    <span class="nav-icon"><i class="fas fa-sliders-h" style="color:#eab308;"></i></span>
+                    <span class="nav-link-text">Slider Foto Utama</span>
                 </a>
             </li>
             <li class="nav-item {{ Request::is('cms-admin/profile') ? 'active' : '' }}">
                 <a href="/cms-admin/profile" data-tooltip="Profil Perusahaan">
-                    <span class="nav-icon"><i class="fas fa-building"></i></span>
+                    <span class="nav-icon"><i class="fas fa-building" style="color:#a855f7;"></i></span>
                     <span class="nav-link-text">Profil Perusahaan</span>
                 </a>
             </li>
             <li class="nav-item {{ Request::is('cms-admin/timeline*') ? 'active' : '' }}">
-                <a href="/cms-admin/timeline" data-tooltip="Sejarah / Timeline">
-                    <span class="nav-icon"><i class="fas fa-timeline"></i></span>
-                    <span class="nav-link-text">Sejarah / Timeline</span>
+                <a href="/cms-admin/timeline" data-tooltip="Sejarah & Perjalanan">
+                    <span class="nav-icon"><i class="fas fa-history" style="color:#ec4899;"></i></span>
+                    <span class="nav-link-text">Sejarah & Perjalanan</span>
                 </a>
             </li>
         </ul>
 
-        <div class="nav-label" style="margin-top:10px;">Produk & Layanan</div>
+        <div class="nav-label" style="margin-top:14px;">Katalog & Layanan</div>
         <ul class="list-unstyled mb-0">
-            <li class="nav-item {{ Request::is('cms-admin/services*') ? 'active' : '' }}">
-                <a href="/cms-admin/services" data-tooltip="Layanan Kami">
-                    <span class="nav-icon"><i class="fas fa-concierge-bell"></i></span>
-                    <span class="nav-link-text">Layanan Kami</span>
-                </a>
-            </li>
             <li class="nav-item {{ Request::is('cms-admin/products*') ? 'active' : '' }}">
                 <a href="/cms-admin/products" data-tooltip="Katalog Produk">
-                    <span class="nav-icon"><i class="fas fa-drum"></i></span>
+                    <span class="nav-icon"><i class="fas fa-drum" style="color:#0ea5e9;"></i></span>
                     <span class="nav-link-text">Katalog Produk</span>
+                </a>
+            </li>
+            <li class="nav-item {{ Request::is('cms-admin/services*') ? 'active' : '' }}">
+                <a href="/cms-admin/services" data-tooltip="Layanan Kami">
+                    <span class="nav-icon"><i class="fas fa-concierge-bell" style="color:#10b981;"></i></span>
+                    <span class="nav-link-text">Layanan Kami</span>
                 </a>
             </li>
             <li class="nav-item {{ Request::is('cms-admin/programs*') ? 'active' : '' }}">
                 <a href="/cms-admin/programs" data-tooltip="Program & Edukasi">
-                    <span class="nav-icon"><i class="fas fa-graduation-cap"></i></span>
+                    <span class="nav-icon"><i class="fas fa-graduation-cap" style="color:#f59e0b;"></i></span>
                     <span class="nav-link-text">Program & Edukasi</span>
                 </a>
             </li>
         </ul>
 
-        <div class="nav-label" style="margin-top:10px;">Media & Kontak</div>
+        <div class="nav-label" style="margin-top:14px;">Galeri & Kontak</div>
         <ul class="list-unstyled mb-0">
             <li class="nav-item {{ Request::is('cms-admin/documentations*') ? 'active' : '' }}">
                 <a href="/cms-admin/documentations" data-tooltip="Galeri Dokumentasi">
-                    <span class="nav-icon"><i class="fas fa-images"></i></span>
+                    <span class="nav-icon"><i class="fas fa-camera-retro" style="color:#14b8a6;"></i></span>
                     <span class="nav-link-text">Galeri Dokumentasi</span>
                 </a>
             </li>
             <li class="nav-item {{ Request::is('cms-admin/contacts') ? 'active' : '' }}">
-                <a href="/cms-admin/contacts" data-tooltip="Hubungi Kami">
-                    <span class="nav-icon"><i class="fas fa-address-book"></i></span>
-                    <span class="nav-link-text">Hubungi Kami</span>
+                <a href="/cms-admin/contacts" data-tooltip="Kontak & Peta">
+                    <span class="nav-icon"><i class="fas fa-address-book" style="color:#f97316;"></i></span>
+                    <span class="nav-link-text">Kontak & Peta</span>
                 </a>
             </li>
         </ul>
@@ -918,8 +935,12 @@
     <!-- Footer / Logout -->
     <div class="sidebar-footer">
         <a href="/" target="_blank" data-tooltip="Lihat Website">
-            <span class="nav-icon"><i class="fas fa-external-link-alt"></i></span>
+            <span class="nav-icon"><i class="fas fa-globe"></i></span>
             <span class="sidebar-link-text">Lihat Website</span>
+        </a>
+        <a href="https://catalog.proatsmusiccenter.com/" target="_blank" data-tooltip="Lihat E-Catalog">
+            <span class="nav-icon"><i class="fas fa-book-open"></i></span>
+            <span class="sidebar-link-text">Lihat E-Catalog</span>
         </a>
         <a href="/cms-admin/logout" style="margin-top:2px;" data-tooltip="Keluar">
             <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>

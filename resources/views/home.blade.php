@@ -63,12 +63,71 @@
 
       <nav class="nav" id="navMenu">
         <a href="{{ url('/#home') }}" class="nav-link active">Home</a>
-        <a href="{{ url('/#about') }}" class="nav-link">Profil</a>
-        <a href="{{ url('/#services') }}" class="nav-link">Layanan</a>
-        <a href="{{ url('/#products') }}" class="nav-link">Produk</a>
-        <a href="{{ url('/#programs') }}" class="nav-link">Program</a>
+
+        <!-- Dropdown Profil -->
+        <div class="nav-item dropdown">
+          <a href="{{ url('/#about') }}" class="nav-link dropdown-toggle">
+            Profil <i class="fas fa-chevron-down dropdown-arrow"></i>
+          </a>
+          <div class="dropdown-menu glass">
+            <a href="{{ url('/#about') }}" class="dropdown-item">
+              <i class="fas fa-building"></i> Profil Perusahaan
+            </a>
+            <a href="{{ url('/#about') }}" class="dropdown-item">
+              <i class="fas fa-history"></i> Sejarah Sejak 1970
+            </a>
+          </div>
+        </div>
+
+        <!-- Dropdown Produk & Katalog -->
+        <div class="nav-item dropdown">
+          <a href="{{ url('/#products') }}" class="nav-link dropdown-toggle">
+            Produk & Katalog <i class="fas fa-chevron-down dropdown-arrow"></i>
+          </a>
+          <div class="dropdown-menu glass">
+            <a href="https://catalog.proatsmusiccenter.com/" target="_blank" rel="noopener noreferrer" class="dropdown-item highlighted">
+              <i class="fas fa-external-link-alt"></i> <strong>E-Catalog Online</strong>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="{{ url('/#products') }}" class="dropdown-item">
+              <i class="fas fa-layer-group"></i> Semua Produk
+            </a>
+            <a href="{{ url('/#products') }}" class="dropdown-item">
+              <i class="fas fa-drum"></i> Marching Band
+            </a>
+            <a href="{{ url('/#products') }}" class="dropdown-item">
+              <i class="fas fa-wind"></i> Alat Tiup / Brass
+            </a>
+            <a href="{{ url('/#products') }}" class="dropdown-item">
+              <i class="fas fa-guitar"></i> Studio Band
+            </a>
+            <a href="{{ url('/#products') }}" class="dropdown-item">
+              <i class="fas fa-compact-disc"></i> Tradisional
+            </a>
+          </div>
+        </div>
+
+        <!-- Dropdown Layanan & Program -->
+        <div class="nav-item dropdown">
+          <a href="{{ url('/#services') }}" class="nav-link dropdown-toggle">
+            Layanan & Program <i class="fas fa-chevron-down dropdown-arrow"></i>
+          </a>
+          <div class="dropdown-menu glass">
+            <a href="{{ url('/#services') }}" class="dropdown-item">
+              <i class="fas fa-concierge-bell"></i> Layanan Kami
+            </a>
+            <a href="{{ url('/#programs') }}" class="dropdown-item">
+              <i class="fas fa-graduation-cap"></i> Program & Edukasi
+            </a>
+            <a href="https://siplah.kemendikdasmen.go.id/" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+              <i class="fas fa-shopping-bag"></i> Pengadaan SIPLah Sekolah <i class="fas fa-external-link-alt" style="font-size:0.7em; margin-left: auto;"></i>
+            </a>
+          </div>
+        </div>
+
         <a href="#dokumentasi" class="nav-link">Dokumentasi</a>
         <a href="{{ url('/#contact') }}" class="nav-link">Hubungi Kami</a>
+
         <div class="nav-cta">
           <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
             <i class="fas fa-sun"></i>
@@ -96,8 +155,8 @@
             <a href="{{ url('/#products') }}" class="btn btn-primary">
               {{ $hero->button1 }} <i class="fas fa-arrow-right"></i>
             </a>
-            <a href="{{ url('/#about') }}" class="btn btn-secondary">
-              {{ $hero->button2 }}
+            <a href="https://catalog.proatsmusiccenter.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <i class="fas fa-book-open"></i> E-Catalog <i class="fas fa-external-link-alt" style="font-size: 0.75em;"></i>
             </a>
           </div>
           <div class="hero-stats">
@@ -121,16 +180,25 @@
           </div>
         </div>
         <div class="hero-media reveal reveal-right">
-          <div class="hero-media-wrapper">
-            <img src="{{ $hero->image ? asset($hero->image) : asset('assets/images/hero_drum.png') }}" alt="Instrumen Musik Proats Snare" class="hero-img" id="heroImg">
-            <div class="hero-badge glass">
-              <div class="badge-icon">
-                <i class="fas fa-award"></i>
-              </div>
-              <div class="badge-text">
-                <h4>Kualitas Ekspor</h4>
-                <p>Standar Internasional</p>
-              </div>
+          <div class="hero-slider-container">
+            <div class="hero-slider" id="heroSlider">
+              @foreach($heroSliders as $index => $hs)
+                @php
+                  $imgSrc = \Illuminate\Support\Str::startsWith($hs->image, 'assets/') ? asset($hs->image) : (\Illuminate\Support\Str::startsWith($hs->image, 'storage/') ? asset($hs->image) : asset('storage/' . $hs->image));
+                @endphp
+                <div class="slide {{ $index == 0 ? 'active' : '' }}">
+                  <img src="{{ $imgSrc }}" alt="{{ $hs->title }}" class="hero-img">
+                  <div class="hero-badge glass">
+                    <div class="badge-icon">
+                      <i class="{{ $hs->icon ?? 'fas fa-award' }}"></i>
+                    </div>
+                    <div class="badge-text">
+                      <h4>{{ $hs->title }}</h4>
+                      <p>{{ $hs->subtitle }}</p>
+                    </div>
+                  </div>
+                </div>
+              @endforeach
             </div>
           </div>
         </div>
@@ -260,6 +328,12 @@
           </div>
         @endforeach
       </div>
+
+      <div class="reveal reveal-up" style="margin-top: 3rem; text-align: center;">
+        <a href="https://catalog.proatsmusiccenter.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.75rem;">
+          <i class="fas fa-book-open"></i> Lihat E-Catalog Selengkapnya <i class="fas fa-external-link-alt" style="font-size: 0.85em;"></i>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -314,7 +388,7 @@
         @foreach($documentations as $d)
           <div class="product-card glass reveal reveal-up">
             <div class="product-media">
-              <img src="{{ asset($d->image) }}" alt="{{ $d->title }}" class="product-img">
+              <img src="{{ \Illuminate\Support\Str::startsWith($d->image, 'assets/') ? asset($d->image) : (\Illuminate\Support\Str::startsWith($d->image, 'storage/') ? asset($d->image) : asset('storage/' . $d->image)) }}" alt="{{ $d->title }}" class="product-img" style="height: 240px; object-fit: cover;">
             </div>
             <div class="product-info">
               <h3 class="product-title">{{ $d->title }}</h3>
@@ -332,7 +406,7 @@
       <div class="siplah-purchase reveal reveal-up">
         <span class="section-tag">Metode Pembelian Instansi Sekolah</span>
         <h2 class="siplah-heading">Tersedia Pembelian Melalui</h2>
-        <a href="https://siplah.kemdikbud.go.id/" target="_blank" rel="noopener noreferrer" class="siplah-logo-link">
+        <a href="https://siplah.kemendikdasmen.go.id/" target="_blank" rel="noopener noreferrer" class="siplah-logo-link">
           <img src="{{ asset('assets/images/siplah-logo.png') }}" alt="SIPLah - Sistem Informasi Pengadaan Sekolah" class="siplah-logo-img">
         </a>
         <p class="siplah-desc">Kami terdaftar resmi sebagai penyedia SIPLah untuk memudahkan sekolah melakukan belanja aman, transparan, dan sesuai regulasi.</p>
@@ -490,6 +564,7 @@
             <li><a href="{{ url('/#about') }}">Profil</a></li>
             <li><a href="{{ url('/#services') }}">Layanan</a></li>
             <li><a href="{{ url('/#products') }}">Produk</a></li>
+            <li><a href="https://catalog.proatsmusiccenter.com/" target="_blank" rel="noopener noreferrer">E-Catalog Online <i class="fas fa-external-link-alt" style="font-size: 0.75em;"></i></a></li>
             <li><a href="{{ url('/#programs') }}">Program</a></li>
             <li><a href="#dokumentasi">Dokumentasi</a></li>
           </ul>

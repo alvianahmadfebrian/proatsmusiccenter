@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hero;
+use App\Models\HeroSlider;
 use App\Models\Profile;
 use App\Models\Timeline;
 use App\Models\Service;
@@ -40,7 +41,7 @@ class HomeController extends Controller
             'address_representative' => 'Jl. Mercedes Benz Komplek Villa Asri 1 Blok I No. 11-12, Cicadas, Gunung Putri, Kab. Bogor, Jawa Barat 16964',
             'address_workshop' => 'Jl. Jenderal Sudirman No. 29 Kaliwadas, Bumiayu, Jawa Tengah',
             'email' => 'info@proatsmusic.com',
-            'whatsapp' => '6285216160770',
+            'whatsapp' => '6281290174510',
             'instagram' => 'https://instagram.com',
             'facebook' => 'https://facebook.com',
             'map_iframe_url' => 'https://maps.google.com/maps?q=Villa%20Asri%20Gunung%20Putri%20Bogor&t=&z=14&ie=UTF8&iwloc=&output=embed'
@@ -48,6 +49,7 @@ class HomeController extends Controller
 
         return view('home', [
             'hero' => $hero,
+            'heroSliders' => HeroSlider::orderBy('order')->get(),
             'profile' => $profile,
             'timelines' => Timeline::orderBy('order')->get(),
             'services' => Service::orderBy('order')->get(),

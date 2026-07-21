@@ -195,16 +195,40 @@ class ContentSeeder extends Seeder
         // 6. Documentation
         $documentations = [
             [
-                'image' => 'assets/images/dokumentasi_1.jpg',
-                'title' => 'Judul Dokumentasi 1',
-                'description' => 'Deskripsi singkat kegiatan.',
+                'image' => 'assets/images/activity_1.jpg',
+                'title' => 'Pelatihan & Pembinaan Marching Band Unit Sekolah',
+                'description' => 'Program pelatihan teknik instrumen perkusif dan tiup oleh tim instruktur profesional Proats untuk unit marching band sekolah.',
                 'order' => 1
             ],
             [
-                'image' => 'assets/images/dokumentasi_2.jpg',
-                'title' => 'Judul Dokumentasi 2',
-                'description' => 'Deskripsi singkat kegiatan.',
+                'image' => 'assets/images/activity_2.jpg',
+                'title' => 'Proses Fabrikasi & Tuning Presisi Workshop',
+                'description' => 'Pengawasan kualitas ketat dan penyesuaian nada presisi pada setiap snare, tenor, dan bass drum sebelum pengiriman.',
                 'order' => 2
+            ],
+            [
+                'image' => 'assets/images/activity_3.jpg',
+                'title' => 'Pengadaan & Penyerahan Instrumen SIPLah Sekolah',
+                'description' => 'Dokumentasi penyerahan paket lengkap alat musik marching band dan tradisional melalui sistem pengadaan resmi SIPLah.',
+                'order' => 3
+            ],
+            [
+                'image' => 'assets/images/activity_4.png',
+                'title' => 'Klinik Musik & Workshop Perawatan Instrumen',
+                'description' => 'Kegiatan pemeliharaan berkala, servis teknis, serta workshop perawatan alat musik bersama para komposer dan pembina.',
+                'order' => 4
+            ],
+            [
+                'image' => 'assets/images/activity_5.png',
+                'title' => 'Dukungan Kejuaraan & Festival Marching Band Nasional',
+                'description' => 'Partisipasi dan dukungan teknis Proats Music Center dalam kejuaraan drumband dan festival seni musik nasional.',
+                'order' => 5
+            ],
+            [
+                'image' => 'assets/images/activity_6.png',
+                'title' => 'Distribusi & Ekspor Produk Alat Musik',
+                'description' => 'Pengemasan standar ekspor dan proses pengiriman produk ke berbagai kota di Indonesia maupun mancanegara.',
+                'order' => 6
             ]
         ];
         foreach ($documentations as $d) {
@@ -216,7 +240,7 @@ class ContentSeeder extends Seeder
             'address_representative' => 'Jl. Mercedes Benz Komplek Villa Asri 1 Blok I No. 11-12, Cicadas, Gunung Putri, Kab. Bogor, Jawa Barat 16964',
             'address_workshop' => 'Jl. Jenderal Sudirman No. 29 Kaliwadas, Bumiayu, Jawa Tengah',
             'email' => 'info@proatsmusic.com',
-            'whatsapp' => '6285216160770',
+            'whatsapp' => '6281290174510',
             'instagram' => 'https://www.instagram.com/proats.marchingproduct?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
             'facebook' => 'https://www.facebook.com/people/Proats-Marching-Persuasion/',
             'map_iframe_url' => 'https://maps.google.com/maps?q=Villa%20Asri%20Gunung%20Putri%20Bogor&t=&z=14&ie=UTF8&iwloc=&output=embed'
