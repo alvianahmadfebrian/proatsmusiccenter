@@ -45,10 +45,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Clean URL if loaded with hash tag (e.g. #home)
-  if (window.location.hash) {
-    history.replaceState(null, null, window.location.pathname);
-  }
+  // Clean URL hash if loaded or navigated with hash tag (e.g. #home)
+  const cleanUrlHash = () => {
+    if (window.location.hash) {
+      try {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      } catch (e) {}
+    }
+  };
+  cleanUrlHash();
+  window.addEventListener('hashchange', cleanUrlHash);
+  setTimeout(cleanUrlHash, 100);
+  setTimeout(cleanUrlHash, 500);
 
   // Smooth scroll and clean URL handler for hash links
   document.querySelectorAll('a[href*="#"]').forEach(anchor => {
@@ -75,9 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Clean URL to keep address bar clean without #
-        if (window.history.pushState) {
-          window.history.pushState(null, null, window.location.pathname);
-        }
+        try {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        } catch (err) {}
       }
     });
   });

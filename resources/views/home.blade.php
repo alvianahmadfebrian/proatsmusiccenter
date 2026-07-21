@@ -672,6 +672,6 @@
   <script>
     window.whatsappNumber = "{{ $contact->whatsapp }}";
   </script>
-  <script src="{{ asset('js/script.js') }}"></script>
+  <script src="{{ asset('js/script.js') }}?v={{ filemtime(public_path('js/script.js')) }}"></script>
 </body>
 </html>
