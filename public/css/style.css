@@ -1663,6 +1663,33 @@ textarea.form-control {
   opacity: 1;
 }
 
+/* Navigation Overlay for Mobile Menu */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Keyframes for Mobile Floating Badge */
+@keyframes float-mobile {
+  0% { transform: translateX(-50%) scale(0.8) translateY(0); }
+  100% { transform: translateX(-50%) scale(0.8) translateY(-8px); }
+}
+
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .hero-grid {
@@ -1686,7 +1713,10 @@ textarea.form-control {
     left: 1rem;
     bottom: 1rem;
   }
-  .hero-img {
+  .hero-slider {
+    height: 380px;
+  }
+  .hero-slider .slide img.hero-img {
     height: 340px;
   }
 
@@ -1782,18 +1812,29 @@ textarea.form-control {
   .dropdown-menu {
     position: static;
     transform: none !important;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
     width: 100%;
     min-width: 100%;
     box-shadow: none;
     border: none;
     background: rgba(255, 255, 255, 0.03);
-    padding: 0.3rem 0 0.3rem 0.8rem;
-    margin-top: 0.25rem;
+    padding: 0 0 0 0.8rem;
+    margin-top: 0;
     border-left: 2px solid var(--primary-glow);
     border-radius: 0 8px 8px 0;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.3s ease, margin 0.3s ease;
+  }
+
+  .dropdown-menu.mobile-open {
+    max-height: 500px;
+    opacity: 1;
+    pointer-events: auto;
+    padding: 0.3rem 0 0.3rem 0.8rem;
+    margin-top: 0.25rem;
   }
 
   .nav-item.dropdown:hover .dropdown-menu {
@@ -1819,8 +1860,15 @@ textarea.form-control {
     font-size: 2.8rem;
   }
 
-  .hero-img {
+  .hero-slider {
+    height: 310px;
+  }
+  .hero-slider .slide img.hero-img {
     height: 280px;
+  }
+
+  .about-media img {
+    height: 320px !important;
   }
 
   .timeline-line {
@@ -1843,8 +1891,18 @@ textarea.form-control {
     right: auto !important;
   }
 
+  .timeline-card {
+    padding: 1.25rem !important;
+  }
+
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services-grid,
+  .products-grid,
+  .programs-grid {
+    gap: 1.25rem;
   }
 
   .logos-grid {
@@ -1857,10 +1915,6 @@ textarea.form-control {
 }
 
 @media (max-width: 580px) {
-  .container {
-    padding: 0 1.25rem;
-  }
-
   .section {
     padding: 4rem 0;
   }
@@ -1873,25 +1927,54 @@ textarea.form-control {
     font-size: 2.2rem;
   }
 
-  .hero-img {
+  .hero-slider {
+    height: 250px;
+  }
+  .hero-slider .slide img.hero-img {
     height: 220px;
   }
 
-  .hero-stats {
+  .hero-actions {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 2.5rem auto;
+  }
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .hero-badge {
+    left: 50% !important;
+    bottom: -0.5rem !important;
+    transform: translateX(-50%) scale(0.8) !important;
+    transform-origin: center;
+    width: max-content;
+    max-width: 95%;
+    padding: 0.8rem 1.2rem;
+    animation: float-mobile 4s ease-in-out infinite alternate;
+  }
+
+  .hero-stats {
+    flex-direction: row !important;
+    justify-content: space-between;
     align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+  .stat-item {
+    text-align: center;
+    flex: 1;
+  }
+  .stat-number {
+    font-size: 1.6rem !important;
+  }
+  .stat-label {
+    font-size: 0.75rem !important;
   }
 
   .services-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .programs-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1914,6 +1997,46 @@ textarea.form-control {
 
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+
+  .footer {
+    text-align: center;
+  }
+  .footer-brand .logo-wrapper {
+    justify-content: center;
+  }
+  .footer-contact-info li {
+    justify-content: center;
+  }
+  .footer-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-bottom-links {
+    justify-content: center;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-media img {
+    height: 260px !important;
+  }
+
+  .products-grid,
+  .programs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-grid,
+  .products-grid,
+  .programs-grid {
+    gap: 1rem;
   }
 }
 
